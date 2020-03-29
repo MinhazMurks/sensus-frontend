@@ -1,0 +1,13 @@
+.container {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-search {
+    padding: 10px;
+    align-self: center;
+    text-align: center;
+    border: 1px solid;
+    width: fit-content;
+}
