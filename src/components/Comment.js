@@ -11,30 +11,32 @@ class Comment extends React.Component{
 
     renderReply() {
         if(this.props.commentData.replies) {
+            let buttonText = this.state.showReplies? 'Hide Replies' : 'Show Replies';
             return (
                 <div>
-                    <button onClick={this.showReplies.bind(this)}>View Replies</button>
+                    <div className='reply-button-holder'>
+                        <span className='reply-button' onClick={this.showReplies}>{buttonText}</span>
+                    </div>
                     {this.renderReplies()}
                 </div>
             )
         }
     };
 
-    showReplies() {
+    showReplies = () => {
         let show = this.state.showReplies;
         this.setState( {
             showReplies: !show,
         })
-    }
+    };
 
 
     renderReplies() {
         if(this.state.showReplies) {
             let replies = this.props.commentData.replies;
             return (
-                <ul>
+                <ul className='replies'>
                     {replies.map((value, index) => {
-                        console.log(value);
                         return (
                             <li key={value.commentId}><Comment commentData={value}/></li>
                         )
@@ -46,12 +48,17 @@ class Comment extends React.Component{
 
     render() {
         return (
-            <div className='comment'>
-                <div className='comment-contents'>
-                    <h1>{this.props.commentData.author}</h1>
-                    <p>{this.props.commentData.commentText}</p>
-                    {this.renderReply()}
+            <div className='comment-structure'>
+                <div className='comment'>
+                    <div className='profile-picture'>
+                        <img className='' src={this.props.commentData.authorImageUrl} alt=''/>
+                    </div>
+                    <div className='comment-contents'>
+                        <span className='comment-author'>{this.props.commentData.author}</span>
+                        <span className='comment-text'>{this.props.commentData.commentText}</span>
+                    </div>
                 </div>
+                {this.renderReply()}
             </div>
         )
     }

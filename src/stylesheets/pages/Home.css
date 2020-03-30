@@ -1,7 +1,15 @@
-.comments-container {
-    align-content: center;
+.home {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.comments-container ul {
+.comments-list {
+    padding: 0px;
     list-style-type: none;
+}
+
+.search-container {
+    justify-self: center;
+    width: 500px;
 }
