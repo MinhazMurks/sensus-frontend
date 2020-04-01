@@ -11,6 +11,7 @@
 }
 
 .search-bar {
+    height: 50%;
     border-radius: 10%/60%;
     display: flex;
     flex-direction: row;
@@ -18,10 +19,15 @@
     padding: 10px;
 }
 
+.search-bar:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0 0 7px;
+}
+
 .search-field {
-    text-align: center;
     background: none;
-    font-size: 150%;
+    font-size: 130%;
     border: none;
 }
 
@@ -34,7 +40,8 @@
 }
 
 .search-button {
-    max-width: 50px;
+    max-width: 30px;
+    padding-right: 10px;
     height: auto;
 }
 
@@ -43,7 +50,8 @@
 }
 
 .clear-button {
-    max-width: 50px;
+    max-width: 30px;
+    padding-left: 10px;
     height: auto;
 }
 

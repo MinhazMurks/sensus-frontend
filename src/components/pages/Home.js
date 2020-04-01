@@ -1,7 +1,6 @@
 import React from 'react';
-import BottomScrollListener from 'react-bottom-scroll-listener';
 import Search from '../Search';
-import Comment from '../Comment';
+import DisplayedComments from '../DisplayedComments';
 import '../../stylesheets/pages/Home.css'
 
 
@@ -16,7 +15,6 @@ class Home extends React.Component {
 
     loadMore = () => {
         if (this.state.nextPage) {
-            console.log("loading more");
             this.loadResults();
         }
     };
@@ -33,6 +31,7 @@ class Home extends React.Component {
         let url = new URL("http://localhost:8080/api/v1/comments"),
             params = {
                 videoUrl: 'https://www.youtube.com/watch?v=u95fZaOqDi4&t=1s',
+                //videoUrl: 'https://www.youtube.com/watch?v=8zkcOSTAI-0',
                 includeReplies: true,
                 nextPageToken: this.state.nextPage
             };
@@ -55,18 +54,13 @@ class Home extends React.Component {
     };
 
     render() {
+        console.log("re-rendering");
+        console.log(this.state);
         return (
             <div className='home'>
-                <BottomScrollListener onBottom={this.loadMore}/>
                 <div className='search-container'>
                     <Search onSearch={this.loadResults} onClear={this.clearResults}/>
-                    <div>
-                        <ul className='comments-list'>
-                            {this.state.comments.map((comment, i) => {
-                                return <li key={comment.commentId}><Comment commentData={comment}/></li>
-                            })}
-                        </ul>
-                    </div>
+                    <DisplayedComments loadMore={this.loadMore} comments={this.state.comments}/>
                 </div>
             </div>
         );

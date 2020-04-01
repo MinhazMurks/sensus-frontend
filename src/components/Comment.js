@@ -11,7 +11,9 @@ class Comment extends React.Component{
 
     renderReply() {
         if(this.props.commentData.replies) {
-            let buttonText = this.state.showReplies? 'Hide Replies' : 'Show Replies';
+            let replyCount = this.props.commentData.replies.length;
+            replyCount = replyCount > 1? replyCount + ' Replies' : this.props.commentData.replies.length + ' Reply';
+            let buttonText = this.state.showReplies? 'Hide' : 'Show ' + replyCount;
             return (
                 <div>
                     <div className='reply-button-holder'>
@@ -30,6 +32,9 @@ class Comment extends React.Component{
         })
     };
 
+    parseDate = () => {
+        return new Date(this.props.commentData.publishedAt).toLocaleString();
+    };
 
     renderReplies() {
         if(this.state.showReplies) {
@@ -51,11 +56,21 @@ class Comment extends React.Component{
             <div className='comment-structure'>
                 <div className='comment'>
                     <div className='profile-picture'>
-                        <img className='' src={this.props.commentData.authorImageUrl} alt=''/>
+                        <a href={this.props.commentData.authorChannelUrl} target='_blank'><img className='' src={this.props.commentData.authorImageUrl} alt=''/></a>
                     </div>
                     <div className='comment-contents'>
-                        <span className='comment-author'>{this.props.commentData.author}</span>
+                        <a className='author-link' href={this.props.commentData.authorChannelUrl} target='_blank'>{this.props.commentData.author}</a>
                         <span className='comment-text'>{this.props.commentData.commentText}</span>
+                        <div className='info-bar'>
+                            <div className='info-bar-item'>
+                                <img className='comment-icon' src={require('../resources/icons/like_icon.png')} alt=''/>
+                                <span className='comment-text'>{this.props.commentData.likeCount}</span>
+                            </div>
+                            <div className='info-bar-item'>
+                                <img className='comment-icon' src={require('../resources/icons/calendar_icon.png')} alt=''/>
+                                <span>{this.parseDate()}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {this.renderReply()}
