@@ -1,12 +1,16 @@
 .comments-list-container {
     display: flex;
     flex-direction: column;
+    margin: 10px 0;
+    height: calc(100% - 20px);
+    width: 30%;
 }
-
 .comments-list {
-    max-height: 50em;
+    margin: 10px 0 0 0;
     padding: 0;
+    align-self: center;
     list-style-type: none;
+    width: 100%;
     overflow-y: scroll;
     scrollbar-width: none;      /* Firefox */
     -ms-overflow-style: none;   /* IE 10+ */
@@ -24,7 +28,14 @@
     justify-content: center;
 }
 
-.filter-bar:hover {
+.filter-field {
+    padding: 10px;
+    border: none;
+    background: rgba(175, 175, 175, 0.45);
+    font-size: 130%;
+}
+
+.filter-field:hover {
     -webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px;
     -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
     box-shadow: rgba(0, 0, 0, 0.45) 0 0 7px;
@@ -35,4 +46,11 @@
     border: none;
     background: rgba(175, 175, 175, 0.45);
     font-size: 130%;
+}
+
+.filter-box:hover {
+    cursor: pointer;
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0 0 10px;
+    -moz-box-shadow: rgba(0,0,0,0.8) 0 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0 0 7px;
 }

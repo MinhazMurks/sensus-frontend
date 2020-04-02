@@ -27,11 +27,10 @@ class Home extends React.Component {
     };
 
     loadResults = () => {
-        console.log('loading results');
         let url = new URL("http://localhost:8080/api/v1/comments"),
             params = {
-                videoUrl: 'https://www.youtube.com/watch?v=u95fZaOqDi4&t=1s',
-                //videoUrl: 'https://www.youtube.com/watch?v=8zkcOSTAI-0',
+                //videoUrl: 'https://www.youtube.com/watch?v=u95fZaOqDi4&t=1s',
+                videoUrl: 'https://www.youtube.com/watch?v=8zkcOSTAI-0',
                 includeReplies: true,
                 nextPageToken: this.state.nextPage
             };
@@ -40,8 +39,6 @@ class Home extends React.Component {
                 url.searchParams.append(key, params[key]);
             }
         });
-
-        console.log("request: " + url);
 
         fetch(url)
             .then((response) => response.json())
@@ -54,13 +51,18 @@ class Home extends React.Component {
     };
 
     render() {
-        console.log("re-rendering");
-        console.log(this.state);
         return (
             <div className='home'>
+                <div className='header-container'>
+                    <div className='sensus-logo'>
+                        <img className='sensus-logo-size' src={require('../../resources/icons/sensus_logo_full.png')} alt=''/>
+                    </div>
+                    <Search onSearch={this.loadResults}/>
+                </div>
                 <div className='search-container'>
-                    <Search onSearch={this.loadResults} onClear={this.clearResults}/>
-                    <DisplayedComments loadMore={this.loadMore} comments={this.state.comments}/>
+                    <div className='search'>
+                        <DisplayedComments onReset={this.clearResults} loadMore={this.loadMore} comments={this.state.comments}/>
+                    </div>
                 </div>
             </div>
         );

@@ -1,15 +1,33 @@
 .home {
     display: flex;
-    justify-content: center;
-    overflow: hidden;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
 }
 
-.comments-list {
-    padding: 0px;
-    list-style-type: none;
+.header-container {
+    background: #282c34;
+    height: 15vh;
+    display: flex;
+    flex-direction: row;
 }
 
 .search-container {
-    justify-self: center;
-    width: 500px;
+    height: 85vh;
+}
+
+.search {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sensus-logo {
+    height: 100%;
+    align-self: flex-start;
+}
+
+.sensus-logo-size {
+    height: 100%;
+    width: auto;
 }

@@ -13,7 +13,7 @@ class Comment extends React.Component{
         if(this.props.commentData.replies) {
             let replyCount = this.props.commentData.replies.length;
             replyCount = replyCount > 1? replyCount + ' Replies' : this.props.commentData.replies.length + ' Reply';
-            let buttonText = this.state.showReplies? 'Hide' : 'Show ' + replyCount;
+            let buttonText = this.state.showReplies? 'Hide ' + replyCount : 'Show ' + replyCount;
             return (
                 <div>
                     <div className='reply-button-holder'>

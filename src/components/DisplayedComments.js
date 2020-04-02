@@ -47,16 +47,33 @@ class DisplayedComments extends React.Component {
         }
     };
 
-    render() {
-        return (
-            <div className='comments-list-container'>
+    reset = () => {
+        this.setState({
+            filterString: '',
+            displayedComments: [],
+        });
+        this.props.onReset();
+    };
+
+    renderFilterBar = () => {
+        if(this.state.displayedComments.length !== 0) {
+            return (
                 <div className='filter-bar'>
-                    <input className='filter-box' onKeyUp={this.testFilter} type='text' placeholder='Filter here'/>
+                    <input className='filter-field' onKeyUp={this.testFilter} type='text' placeholder='Filter here'/>
+                    <button onClick={this.reset} className='filter-box'>reset</button>
                     <select onChange={this.filterTypeChange} defaultValue={this.state.filterType} className='filter-box' name='filterOptions' id=''>
                         <option value='author'>author</option>
                         <option value='commentText'>text</option>
                     </select>
                 </div>
+            );
+        }
+    };
+
+    render() {
+        return (
+            <div className='comments-list-container'>
+                {this.renderFilterBar()}
                 <BottomScrollListener onBottom={this.loadMoreCheck}>
                     {scrollRef => (
                         <ul ref={scrollRef} className='comments-list'>
